@@ -1,0 +1,14 @@
+services:
+  generator:
+    build: .
+    image: ai-test-data-generator:latest
+    container_name: ai-test-data-generator
+    ports:
+      - "8000:8000"
+    environment:
+      # Provide your key here or via a .env file in this directory.
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      CLAUDE_MODEL: ${CLAUDE_MODEL:-claude-opus-4-8}
+      CLAUDE_EFFORT: ${CLAUDE_EFFORT:-high}
+      ENVIRONMENT: production
+    restart: unless-stopped

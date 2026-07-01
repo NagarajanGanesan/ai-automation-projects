@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.11.9 on win32)" generated="2026-06-22T07:35:29.118105" rpa="false" schemaversion="5">
+<suite id="s1" name="Generated Api Tests" source="D:\captix-testcases\captix-robot\ai-test-data-generator\results\generated_api_tests.robot">
+<kw name="Create Session" owner="RequestsLibrary" type="SETUP">
+<arg>api</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<test id="s1-t1" name="positive_1" line="13">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "user0@example.com", "username": "username", "password": "password", "age": 18, "role": "user"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 201 (positive).</doc>
+<tag>positive</tag>
+<status status="PASS" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</test>
+<test id="s1-t2" name="positive_2" line="20">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "user1@example.com", "username": "username", "password": "password", "age": 19, "role": "admin"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 201 (positive).</doc>
+<tag>positive</tag>
+<status status="PASS" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</test>
+<test id="s1-t3" name="positive_3" line="27">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "user2@example.com", "username": "username", "password": "password", "age": 20, "role": "editor"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 201 (positive).</doc>
+<tag>positive</tag>
+<status status="PASS" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</test>
+<test id="s1-t4" name="negative_email_1" line="34">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"username": "username", "password": "password", "age": 18, "role": "user"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</test>
+<test id="s1-t5" name="negative_email_2" line="41">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "not-an-email", "username": "username", "password": "password", "age": 18, "role": "user"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</test>
+<test id="s1-t6" name="negative_username_3" line="48">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "user0@example.com", "password": "password", "age": 18, "role": "user"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T07:35:29.309384" elapsed="0.000000"/>
+</test>
+<test id="s1-t7" name="negative_username_4" line="55">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "user0@example.com", "username": "us", "password": "password", "age": 18, "role": "user"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.324408" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.324408" elapsed="0.000889"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.325297" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T07:35:29.324408" elapsed="0.000889"/>
+</test>
+<test id="s1-t8" name="negative_username_5" line="62">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "user0@example.com", "username": "usernamexxxxxxxxxxxxx", "password": "password", "age": 18, "role": "user"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.325297" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.325297" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.325297" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T07:35:29.325297" elapsed="0.000000"/>
+</test>
+<test id="s1-t9" name="negative_username_6" line="69">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "user0@example.com", "username": 1234567, "password": "password", "age": 18, "role": "user"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.327503" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.327503" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.327503" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T07:35:29.325297" elapsed="0.002206"/>
+</test>
+<test id="s1-t10" name="negative_password_7" line="76">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "user0@example.com", "username": "username", "age": 18, "role": "user"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.327503" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.327503" elapsed="0.001383"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T07:35:29.327503" elapsed="0.001383"/>
+</test>
+<test id="s1-t11" name="negative_password_8" line="83">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "user0@example.com", "username": "username", "password": "passwor", "age": 18, "role": "user"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</test>
+<test id="s1-t12" name="negative_password_9" line="90">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "user0@example.com", "username": "username", "password": "passwordxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", "age": 18, "role": "user"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</test>
+<test id="s1-t13" name="negative_password_10" line="97">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "user0@example.com", "username": "username", "password": 1234567, "age": 18, "role": "user"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</test>
+<test id="s1-t14" name="negative_age_11" line="104">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "user0@example.com", "username": "username", "password": "password", "role": "user"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</test>
+<test id="s1-t15" name="negative_age_12" line="111">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "user0@example.com", "username": "username", "password": "password", "age": 17, "role": "user"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</test>
+<test id="s1-t16" name="negative_age_13" line="118">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "user0@example.com", "username": "username", "password": "password", "age": 121, "role": "user"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</test>
+<test id="s1-t17" name="negative_age_14" line="125">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "user0@example.com", "username": "username", "password": "password", "age": "not-a-number", "role": "user"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</test>
+<test id="s1-t18" name="negative_role_15" line="132">
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"email": "user0@example.com", "username": "username", "password": "password", "age": 18, "role": "__not_a_valid_option__"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/users</arg>
+<arg>json=${body}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T07:35:29.328886" elapsed="0.000000"/>
+</test>
+<doc>Auto-generated API test data for POST /api/v1/users.
+Generated by the AI Test Data Generator. Point http://localhost:8000
+at your environment, then run:  robot generated_api_tests.robot</doc>
+<status status="PASS" start="2026-06-22T07:35:29.118105" elapsed="0.210781"/>
+</suite>
+<statistics>
+<total>
+<stat pass="18" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="15" fail="0" skip="0">negative</stat>
+<stat pass="3" fail="0" skip="0">positive</stat>
+</tag>
+<suite>
+<stat name="Generated Api Tests" id="s1" pass="18" fail="0" skip="0">Generated Api Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

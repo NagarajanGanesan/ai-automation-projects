@@ -1,0 +1,1166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.11.9 on win32)" generated="2026-06-22T11:33:57.490537" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="D:\captix-testcases\captix-robot\ai-test-data-generator\tests">
+<suite id="s1-s1" name="Api Tests" source="D:\captix-testcases\captix-robot\ai-test-data-generator\tests\api_tests.robot">
+<test id="s1-s1-t1" name="Health Reports OK And Rule-Based Mode" line="11">
+<kw name="Get Health" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.841070" level="INFO">HTTP Request: GET http://testserver/api/health "HTTP/1.1 200 OK"</msg>
+<msg time="2026-06-22T11:33:57.842072" level="INFO">${resp} = &lt;Response [200 OK]&gt;</msg>
+<var>${resp}</var>
+<status status="PASS" start="2026-06-22T11:33:57.829067" elapsed="0.013005"/>
+</kw>
+<kw name="Status Code" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.842072" level="INFO">${code} = 200</msg>
+<var>${code}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.842072" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.842072" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.842072" elapsed="0.000000"/>
+</kw>
+<kw name="Json Body" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.842072" level="INFO">${body} = {'status': 'ok', 'version': '1.0.0', 'ai_enabled': False}</msg>
+<var>${body}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.842072" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${body}[status]</arg>
+<arg>ok</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.842072" elapsed="0.001036"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${body}[ai_enabled]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.843108" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-22T11:33:57.828004" elapsed="0.015104"/>
+</test>
+<test id="s1-s1-t2" name="Generate Returns All Six Categories" line="19">
+<kw name="Load Sample Request" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.844092" level="INFO">${req} = {'user_story': 'As a new user, I want to register an account with my email, a strong password, and my age so that I can access the platform. Users must be at least 18 years old.', 'api_spec': {'method...</msg>
+<var>${req}</var>
+<status status="PASS" start="2026-06-22T11:33:57.843108" elapsed="0.000984"/>
+</kw>
+<kw name="Post Generate" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.849056" level="INFO">HTTP Request: POST http://testserver/api/generate "HTTP/1.1 200 OK"</msg>
+<msg time="2026-06-22T11:33:57.849056" level="INFO">${resp} = &lt;Response [200 OK]&gt;</msg>
+<var>${resp}</var>
+<arg>${req}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.844092" elapsed="0.004964"/>
+</kw>
+<kw name="Status Code" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.850094" level="INFO">${code} = 200</msg>
+<var>${code}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.849056" elapsed="0.001038"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.850094" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.850094" elapsed="0.000000"/>
+</kw>
+<kw name="Json Body" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.850094" level="INFO">${body} = {'generation_id': '3bc657724d284a9b8257516216cd6f24', 'generated': {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email':...</msg>
+<var>${body}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.850094" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.851071" level="INFO">${gen} = {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email': 'user0@example.com', 'username': 'username', 'password': 'password...</msg>
+<var>${gen}</var>
+<arg>${body}[generated]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.850094" elapsed="0.000977"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.851071" level="INFO">Length is 3.</msg>
+<arg>${gen}[positive]</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.851071" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.851071" level="INFO">Length is 15.</msg>
+<arg>${gen}[negative]</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.851071" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.852070" level="INFO">Length is 12.</msg>
+<arg>${gen}[boundary_values]</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.851071" elapsed="0.000999"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.852070" level="INFO">Length is 17.</msg>
+<arg>${gen}[equivalence_partitions]</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.852070" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.852070" level="INFO">Length is 18.</msg>
+<arg>${gen}[api_payloads]</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.852070" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.852070" level="INFO">Length is 3.</msg>
+<arg>${gen}[seed_data][sql]</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.852070" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${gen}[generated_by_ai]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.852070" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-22T11:33:57.843108" elapsed="0.008962"/>
+</test>
+<test id="s1-s1-t3" name="Generate Then Fetch Result By Id" line="34">
+<kw name="Load Sample Request" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.853069" level="INFO">${req} = {'user_story': 'As a new user, I want to register an account with my email, a strong password, and my age so that I can access the platform. Users must be at least 18 years old.', 'api_spec': {'method...</msg>
+<var>${req}</var>
+<status status="PASS" start="2026-06-22T11:33:57.853069" elapsed="0.000000"/>
+</kw>
+<kw name="Post Generate" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.856973" level="INFO">HTTP Request: POST http://testserver/api/generate "HTTP/1.1 200 OK"</msg>
+<msg time="2026-06-22T11:33:57.856973" level="INFO">${resp} = &lt;Response [200 OK]&gt;</msg>
+<var>${resp}</var>
+<arg>${req}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.853069" elapsed="0.003904"/>
+</kw>
+<kw name="Json Body" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.856973" level="INFO">${body} = {'generation_id': '895177b7871d4e9eb165bfeaf5549ddd', 'generated': {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email':...</msg>
+<var>${body}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.856973" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.857974" level="INFO">${gen_id} = 895177b7871d4e9eb165bfeaf5549ddd</msg>
+<var>${gen_id}</var>
+<arg>${body}[generation_id]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.856973" elapsed="0.001001"/>
+</kw>
+<kw name="Get Result" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.859974" level="INFO">HTTP Request: GET http://testserver/api/result/895177b7871d4e9eb165bfeaf5549ddd "HTTP/1.1 200 OK"</msg>
+<msg time="2026-06-22T11:33:57.860973" level="INFO">${resp2} = &lt;Response [200 OK]&gt;</msg>
+<var>${resp2}</var>
+<arg>${gen_id}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.857974" elapsed="0.002999"/>
+</kw>
+<kw name="Status Code" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.860973" level="INFO">${code} = 200</msg>
+<var>${code}</var>
+<arg>${resp2}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.860973" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.860973" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.860973" elapsed="0.000000"/>
+</kw>
+<kw name="Json Body" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.862152" level="INFO">${body2} = {'generation_id': '895177b7871d4e9eb165bfeaf5549ddd', 'generated': {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email':...</msg>
+<var>${body2}</var>
+<arg>${resp2}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.860973" elapsed="0.001179"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${body2}[generation_id]</arg>
+<arg>${gen_id}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.862152" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-22T11:33:57.853069" elapsed="0.009083"/>
+</test>
+<test id="s1-s1-t4" name="Generate Rejects Empty Fields" line="45">
+<kw name="Load Sample Request" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.862152" level="INFO">${req} = {'user_story': 'As a new user, I want to register an account with my email, a strong password, and my age so that I can access the platform. Users must be at least 18 years old.', 'api_spec': {'method...</msg>
+<var>${req}</var>
+<status status="PASS" start="2026-06-22T11:33:57.862152" elapsed="0.000000"/>
+</kw>
+<kw name="With Empty Fields" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.863181" level="INFO">${bad} = {'user_story': 'As a new user, I want to register an account with my email, a strong password, and my age so that I can access the platform. Users must be at least 18 years old.', 'api_spec': {'method...</msg>
+<var>${bad}</var>
+<arg>${req}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.862152" elapsed="0.001029"/>
+</kw>
+<kw name="Post Generate" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.865181" level="INFO">HTTP Request: POST http://testserver/api/generate "HTTP/1.1 400 Bad Request"</msg>
+<msg time="2026-06-22T11:33:57.865181" level="INFO">${resp} = &lt;Response [400 Bad Request]&gt;</msg>
+<var>${resp}</var>
+<arg>${bad}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.863181" elapsed="0.002000"/>
+</kw>
+<kw name="Status Code" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.865181" level="INFO">${code} = 400</msg>
+<var>${code}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.865181" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.866218" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.865181" elapsed="0.001037"/>
+</kw>
+<kw name="Json Body" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.866218" level="INFO">${body} = {'error': {'code': 'validation_error', 'message': 'api_spec.fields must contain at least one field to generate data for.'}}</msg>
+<var>${body}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.866218" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${body}[error][code]</arg>
+<arg>validation_error</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.866218" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-22T11:33:57.862152" elapsed="0.004066"/>
+</test>
+<test id="s1-s1-t5" name="Result Unknown Id Returns 404" line="54">
+<kw name="Get Result" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.868182" level="INFO">HTTP Request: GET http://testserver/api/result/does-not-exist "HTTP/1.1 404 Not Found"</msg>
+<msg time="2026-06-22T11:33:57.868182" level="INFO">${resp} = &lt;Response [404 Not Found]&gt;</msg>
+<var>${resp}</var>
+<arg>does-not-exist</arg>
+<status status="PASS" start="2026-06-22T11:33:57.866218" elapsed="0.001964"/>
+</kw>
+<kw name="Status Code" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.869182" level="INFO">${code} = 404</msg>
+<var>${code}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.869182" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.869182" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${code}</arg>
+<arg>404</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.869182" elapsed="0.000000"/>
+</kw>
+<kw name="Json Body" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.869182" level="INFO">${body} = {'error': {'code': 'result_not_found', 'message': "No generation found for id 'does-not-exist'."}}</msg>
+<var>${body}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.869182" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${body}[error][code]</arg>
+<arg>result_not_found</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.869182" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-22T11:33:57.866218" elapsed="0.002964"/>
+</test>
+<doc>End-to-end API tests for the AI Test Data Generator.
+Runs offline against the FastAPI app via Starlette's TestClient
+(no live server needed). With no API key set, the app uses the
+deterministic rule-based engine.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.519425" elapsed="0.350757"/>
+</suite>
+<suite id="s1-s2" name="Generation Data" source="D:\captix-testcases\captix-robot\ai-test-data-generator\tests\generation_data.robot">
+<test id="s1-s2-t1" name="Positive Records Match Requested Count" line="10">
+<kw name="Generate From Sample">
+<kw name="Load Sample Request" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.872182" level="INFO">${req} = {'user_story': 'As a new user, I want to register an account with my email, a strong password, and my age so that I can access the platform. Users must be at least 18 years old.', 'api_spec': {'method...</msg>
+<var>${req}</var>
+<status status="PASS" start="2026-06-22T11:33:57.872182" elapsed="0.000000"/>
+</kw>
+<kw name="Post Generate" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.875200" level="INFO">HTTP Request: POST http://testserver/api/generate "HTTP/1.1 200 OK"</msg>
+<msg time="2026-06-22T11:33:57.876181" level="INFO">${resp} = &lt;Response [200 OK]&gt;</msg>
+<var>${resp}</var>
+<arg>${req}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.872182" elapsed="0.003999"/>
+</kw>
+<kw name="Status Code" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.876181" level="INFO">${code} = 200</msg>
+<var>${code}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.876181" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.876181" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.876181" elapsed="0.000000"/>
+</kw>
+<kw name="Json Body" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.877181" level="INFO">${body} = {'generation_id': 'c4698df7847e4fddb0d73e23eea2185e', 'generated': {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email':...</msg>
+<var>${body}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.876181" elapsed="0.001000"/>
+</kw>
+<return>
+<value>${body}[generated]</value>
+<status status="PASS" start="2026-06-22T11:33:57.877181" elapsed="0.000000"/>
+</return>
+<msg time="2026-06-22T11:33:57.877181" level="INFO">${gen} = {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email': 'user0@example.com', 'username': 'username', 'password': 'password...</msg>
+<var>${gen}</var>
+<doc>POST the bundled sample request and return the generated artifacts.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.872182" elapsed="0.004999"/>
+</kw>
+<kw name="Length Should Be" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.877181" level="INFO">Length is 3.</msg>
+<arg>${gen}[positive]</arg>
+<arg>3</arg>
+<doc>Verifies that the length of the given item is correct.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.877181" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-22T11:33:57.871182" elapsed="0.005999"/>
+</test>
+<test id="s1-s2-t2" name="Negative Records Carry A Violated Field" line="14">
+<kw name="Generate From Sample">
+<kw name="Load Sample Request" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.878821" level="INFO">${req} = {'user_story': 'As a new user, I want to register an account with my email, a strong password, and my age so that I can access the platform. Users must be at least 18 years old.', 'api_spec': {'method...</msg>
+<var>${req}</var>
+<status status="PASS" start="2026-06-22T11:33:57.878486" elapsed="0.000335"/>
+</kw>
+<kw name="Post Generate" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.881865" level="INFO">HTTP Request: POST http://testserver/api/generate "HTTP/1.1 200 OK"</msg>
+<msg time="2026-06-22T11:33:57.881865" level="INFO">${resp} = &lt;Response [200 OK]&gt;</msg>
+<var>${resp}</var>
+<arg>${req}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.878821" elapsed="0.003044"/>
+</kw>
+<kw name="Status Code" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.882878" level="INFO">${code} = 200</msg>
+<var>${code}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.881865" elapsed="0.001013"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.882878" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.882878" elapsed="0.000000"/>
+</kw>
+<kw name="Json Body" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.882878" level="INFO">${body} = {'generation_id': '915b7ec0bf624d74839079832f4981c5', 'generated': {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email':...</msg>
+<var>${body}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.882878" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${body}[generated]</value>
+<status status="PASS" start="2026-06-22T11:33:57.882878" elapsed="0.000000"/>
+</return>
+<msg time="2026-06-22T11:33:57.883877" level="INFO">${gen} = {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email': 'user0@example.com', 'username': 'username', 'password': 'password...</msg>
+<var>${gen}</var>
+<doc>POST the bundled sample request and return the generated artifacts.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.878486" elapsed="0.005391"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.883877" level="INFO">${negatives} = [{'name': 'negative_email_1', 'description': 'Violates: required field missing', 'kind': 'negative', 'data': {'username': 'username', 'password': 'password', 'age': 18, 'role': 'user'}, 'expected_vali...</msg>
+<var>${negatives}</var>
+<arg>${gen}[negative]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.883877" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.883877" level="INFO">Length is 15.</msg>
+<arg>${negatives}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.883877" elapsed="0.000000"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${rec}[expected_valid]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.883877" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.884876" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'NoneType'&gt;</msg>
+<arg>${rec}[violated_field]</arg>
+<arg>${None}</arg>
+<doc>Fails if the given objects are equal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.884876" elapsed="0.000000"/>
+</kw>
+<var name="${rec}">{'name': 'negative_email_1', 'description': 'Violates: required field missing', 'kind': 'negative', 'data': {'username': 'username', 'password': 'password', 'age': 18, 'role': 'user'}, 'expected_valid...</var>
+<status status="PASS" start="2026-06-22T11:33:57.883877" elapsed="0.000999"/>
+</iter>
+<iter>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${rec}[expected_valid]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.884876" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.884876" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'NoneType'&gt;</msg>
+<arg>${rec}[violated_field]</arg>
+<arg>${None}</arg>
+<doc>Fails if the given objects are equal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.884876" elapsed="0.000000"/>
+</kw>
+<var name="${rec}">{'name': 'negative_email_2', 'description': 'Violates: wrong type for email', 'kind': 'negative', 'data': {'email': 'not-an-email', 'username': 'username', 'password': 'password', 'age': 18, 'role': '...</var>
+<status status="PASS" start="2026-06-22T11:33:57.884876" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${rec}[expected_valid]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.884876" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.885876" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'NoneType'&gt;</msg>
+<arg>${rec}[violated_field]</arg>
+<arg>${None}</arg>
+<doc>Fails if the given objects are equal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.884876" elapsed="0.001000"/>
+</kw>
+<var name="${rec}">{'name': 'negative_username_3', 'description': 'Violates: required field missing', 'kind': 'negative', 'data': {'email': 'user0@example.com', 'password': 'password', 'age': 18, 'role': 'user'}, 'expec...</var>
+<status status="PASS" start="2026-06-22T11:33:57.884876" elapsed="0.001000"/>
+</iter>
+<iter>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${rec}[expected_valid]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.885876" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.885876" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'NoneType'&gt;</msg>
+<arg>${rec}[violated_field]</arg>
+<arg>${None}</arg>
+<doc>Fails if the given objects are equal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.885876" elapsed="0.000000"/>
+</kw>
+<var name="${rec}">{'name': 'negative_username_4', 'description': 'Violates: shorter than min_length (3)', 'kind': 'negative', 'data': {'email': 'user0@example.com', 'username': 'us', 'password': 'password', 'age': 18, ...</var>
+<status status="PASS" start="2026-06-22T11:33:57.885876" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${rec}[expected_valid]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.885876" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.886876" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'NoneType'&gt;</msg>
+<arg>${rec}[violated_field]</arg>
+<arg>${None}</arg>
+<doc>Fails if the given objects are equal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.886876" elapsed="0.000000"/>
+</kw>
+<var name="${rec}">{'name': 'negative_username_5', 'description': 'Violates: longer than max_length (20)', 'kind': 'negative', 'data': {'email': 'user0@example.com', 'username': 'usernamexxxxxxxxxxxxx', 'password': 'pas...</var>
+<status status="PASS" start="2026-06-22T11:33:57.885876" elapsed="0.001000"/>
+</iter>
+<iter>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${rec}[expected_valid]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.886876" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.886876" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'NoneType'&gt;</msg>
+<arg>${rec}[violated_field]</arg>
+<arg>${None}</arg>
+<doc>Fails if the given objects are equal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.886876" elapsed="0.000000"/>
+</kw>
+<var name="${rec}">{'name': 'negative_username_6', 'description': 'Violates: wrong type for string', 'kind': 'negative', 'data': {'email': 'user0@example.com', 'username': 1234567, 'password': 'password', 'age': 18, 'ro...</var>
+<status status="PASS" start="2026-06-22T11:33:57.886876" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${rec}[expected_valid]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.886876" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.887876" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'NoneType'&gt;</msg>
+<arg>${rec}[violated_field]</arg>
+<arg>${None}</arg>
+<doc>Fails if the given objects are equal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.886876" elapsed="0.001000"/>
+</kw>
+<var name="${rec}">{'name': 'negative_password_7', 'description': 'Violates: required field missing', 'kind': 'negative', 'data': {'email': 'user0@example.com', 'username': 'username', 'age': 18, 'role': 'user'}, 'expec...</var>
+<status status="PASS" start="2026-06-22T11:33:57.886876" elapsed="0.001000"/>
+</iter>
+<iter>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${rec}[expected_valid]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.887876" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.887876" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'NoneType'&gt;</msg>
+<arg>${rec}[violated_field]</arg>
+<arg>${None}</arg>
+<doc>Fails if the given objects are equal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.887876" elapsed="0.000000"/>
+</kw>
+<var name="${rec}">{'name': 'negative_password_8', 'description': 'Violates: shorter than min_length (8)', 'kind': 'negative', 'data': {'email': 'user0@example.com', 'username': 'username', 'password': 'passwor', 'age':...</var>
+<status status="PASS" start="2026-06-22T11:33:57.887876" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${rec}[expected_valid]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.887876" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.887876" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'NoneType'&gt;</msg>
+<arg>${rec}[violated_field]</arg>
+<arg>${None}</arg>
+<doc>Fails if the given objects are equal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.887876" elapsed="0.000999"/>
+</kw>
+<var name="${rec}">{'name': 'negative_password_9', 'description': 'Violates: longer than max_length (64)', 'kind': 'negative', 'data': {'email': 'user0@example.com', 'username': 'username', 'password': 'passwordxxxxxxxx...</var>
+<status status="PASS" start="2026-06-22T11:33:57.887876" elapsed="0.000999"/>
+</iter>
+<iter>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${rec}[expected_valid]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.888875" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.888875" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'NoneType'&gt;</msg>
+<arg>${rec}[violated_field]</arg>
+<arg>${None}</arg>
+<doc>Fails if the given objects are equal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.888875" elapsed="0.000000"/>
+</kw>
+<var name="${rec}">{'name': 'negative_password_10', 'description': 'Violates: wrong type for string', 'kind': 'negative', 'data': {'email': 'user0@example.com', 'username': 'username', 'password': 1234567, 'age': 18, 'r...</var>
+<status status="PASS" start="2026-06-22T11:33:57.888875" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${rec}[expected_valid]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.888875" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.888875" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'NoneType'&gt;</msg>
+<arg>${rec}[violated_field]</arg>
+<arg>${None}</arg>
+<doc>Fails if the given objects are equal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.888875" elapsed="0.000000"/>
+</kw>
+<var name="${rec}">{'name': 'negative_age_11', 'description': 'Violates: required field missing', 'kind': 'negative', 'data': {'email': 'user0@example.com', 'username': 'username', 'password': 'password', 'role': 'user'...</var>
+<status status="PASS" start="2026-06-22T11:33:57.888875" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${rec}[expected_valid]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.888875" elapsed="0.001000"/>
+</kw>
+<kw name="Should Not Be Equal" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.889875" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'NoneType'&gt;</msg>
+<arg>${rec}[violated_field]</arg>
+<arg>${None}</arg>
+<doc>Fails if the given objects are equal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.889875" elapsed="0.000000"/>
+</kw>
+<var name="${rec}">{'name': 'negative_age_12', 'description': 'Violates: below minimum (18.0)', 'kind': 'negative', 'data': {'email': 'user0@example.com', 'username': 'username', 'password': 'password', 'age': 17, 'role...</var>
+<status status="PASS" start="2026-06-22T11:33:57.888875" elapsed="0.001000"/>
+</iter>
+<iter>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${rec}[expected_valid]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.889875" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.889875" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'NoneType'&gt;</msg>
+<arg>${rec}[violated_field]</arg>
+<arg>${None}</arg>
+<doc>Fails if the given objects are equal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.889875" elapsed="0.000000"/>
+</kw>
+<var name="${rec}">{'name': 'negative_age_13', 'description': 'Violates: above maximum (120.0)', 'kind': 'negative', 'data': {'email': 'user0@example.com', 'username': 'username', 'password': 'password', 'age': 121, 'ro...</var>
+<status status="PASS" start="2026-06-22T11:33:57.889875" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${rec}[expected_valid]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.889875" elapsed="0.001001"/>
+</kw>
+<kw name="Should Not Be Equal" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.890876" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'NoneType'&gt;</msg>
+<arg>${rec}[violated_field]</arg>
+<arg>${None}</arg>
+<doc>Fails if the given objects are equal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.890876" elapsed="0.000000"/>
+</kw>
+<var name="${rec}">{'name': 'negative_age_14', 'description': 'Violates: wrong type for integer', 'kind': 'negative', 'data': {'email': 'user0@example.com', 'username': 'username', 'password': 'password', 'age': 'not-a-...</var>
+<status status="PASS" start="2026-06-22T11:33:57.889875" elapsed="0.001001"/>
+</iter>
+<iter>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${rec}[expected_valid]</arg>
+<arg>${False}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.890876" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Equal" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.890876" level="INFO">Argument types are:
+&lt;class 'str'&gt;
+&lt;class 'NoneType'&gt;</msg>
+<arg>${rec}[violated_field]</arg>
+<arg>${None}</arg>
+<doc>Fails if the given objects are equal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.890876" elapsed="0.000000"/>
+</kw>
+<var name="${rec}">{'name': 'negative_role_15', 'description': 'Violates: value not in allowed enum', 'kind': 'negative', 'data': {'email': 'user0@example.com', 'username': 'username', 'password': 'password', 'age': 18,...</var>
+<status status="PASS" start="2026-06-22T11:33:57.890876" elapsed="0.000000"/>
+</iter>
+<var>${rec}</var>
+<value>@{negatives}</value>
+<status status="PASS" start="2026-06-22T11:33:57.883877" elapsed="0.006999"/>
+</for>
+<status status="PASS" start="2026-06-22T11:33:57.877181" elapsed="0.013695"/>
+</test>
+<test id="s1-s2-t3" name="Seed Data Emits Insert Statements" line="23">
+<kw name="Generate From Sample">
+<kw name="Load Sample Request" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.891875" level="INFO">${req} = {'user_story': 'As a new user, I want to register an account with my email, a strong password, and my age so that I can access the platform. Users must be at least 18 years old.', 'api_spec': {'method...</msg>
+<var>${req}</var>
+<status status="PASS" start="2026-06-22T11:33:57.891875" elapsed="0.000000"/>
+</kw>
+<kw name="Post Generate" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.895315" level="INFO">HTTP Request: POST http://testserver/api/generate "HTTP/1.1 200 OK"</msg>
+<msg time="2026-06-22T11:33:57.895315" level="INFO">${resp} = &lt;Response [200 OK]&gt;</msg>
+<var>${resp}</var>
+<arg>${req}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.891875" elapsed="0.003440"/>
+</kw>
+<kw name="Status Code" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.895315" level="INFO">${code} = 200</msg>
+<var>${code}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.895315" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.896423" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.895315" elapsed="0.001108"/>
+</kw>
+<kw name="Json Body" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.896423" level="INFO">${body} = {'generation_id': '164d32c4f6a647e588d97166f30a5630', 'generated': {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email':...</msg>
+<var>${body}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.896423" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${body}[generated]</value>
+<status status="PASS" start="2026-06-22T11:33:57.896423" elapsed="0.000000"/>
+</return>
+<msg time="2026-06-22T11:33:57.897404" level="INFO">${gen} = {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email': 'user0@example.com', 'username': 'username', 'password': 'password...</msg>
+<var>${gen}</var>
+<doc>POST the bundled sample request and return the generated artifacts.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.891875" elapsed="0.005529"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${gen}[seed_data][table]</arg>
+<arg>users</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.897404" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.897404" level="INFO">${statements} = ["INSERT INTO users (email, username, password, age, role) VALUES ('user0@example.com', 'username', 'password', 18, 'user');", "INSERT INTO users (email, username, password, age, role) VALUES ('user1@...</msg>
+<var>${statements}</var>
+<arg>${gen}[seed_data][sql]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.897404" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.897404" level="INFO">Length is 3.</msg>
+<arg>${statements}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.897404" elapsed="0.000000"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Should Start With" owner="BuiltIn">
+<arg>${stmt}</arg>
+<arg>INSERT INTO users (</arg>
+<doc>Fails if the string ``str1`` does not start with the string ``str2``.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.897404" elapsed="0.000000"/>
+</kw>
+<var name="${stmt}">INSERT INTO users (email, username, password, age, role) VALUES ('user0@example.com', 'username', 'password', 18, 'user');</var>
+<status status="PASS" start="2026-06-22T11:33:57.897404" elapsed="0.000000"/>
+</iter>
+<iter>
+<kw name="Should Start With" owner="BuiltIn">
+<arg>${stmt}</arg>
+<arg>INSERT INTO users (</arg>
+<doc>Fails if the string ``str1`` does not start with the string ``str2``.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.897404" elapsed="0.001141"/>
+</kw>
+<var name="${stmt}">INSERT INTO users (email, username, password, age, role) VALUES ('user1@example.com', 'username', 'password', 19, 'admin');</var>
+<status status="PASS" start="2026-06-22T11:33:57.897404" elapsed="0.001141"/>
+</iter>
+<iter>
+<kw name="Should Start With" owner="BuiltIn">
+<arg>${stmt}</arg>
+<arg>INSERT INTO users (</arg>
+<doc>Fails if the string ``str1`` does not start with the string ``str2``.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.898545" elapsed="0.000000"/>
+</kw>
+<var name="${stmt}">INSERT INTO users (email, username, password, age, role) VALUES ('user2@example.com', 'username', 'password', 20, 'editor');</var>
+<status status="PASS" start="2026-06-22T11:33:57.898545" elapsed="0.000000"/>
+</iter>
+<var>${stmt}</var>
+<value>@{statements}</value>
+<status status="PASS" start="2026-06-22T11:33:57.897404" elapsed="0.001141"/>
+</for>
+<status status="PASS" start="2026-06-22T11:33:57.890876" elapsed="0.007669"/>
+</test>
+<test id="s1-s2-t4" name="Exports Include A Runnable Robot Framework Suite" line="32">
+<kw name="Generate From Sample">
+<kw name="Load Sample Request" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.899545" level="INFO">${req} = {'user_story': 'As a new user, I want to register an account with my email, a strong password, and my age so that I can access the platform. Users must be at least 18 years old.', 'api_spec': {'method...</msg>
+<var>${req}</var>
+<status status="PASS" start="2026-06-22T11:33:57.898545" elapsed="0.001000"/>
+</kw>
+<kw name="Post Generate" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.902570" level="INFO">HTTP Request: POST http://testserver/api/generate "HTTP/1.1 200 OK"</msg>
+<msg time="2026-06-22T11:33:57.902570" level="INFO">${resp} = &lt;Response [200 OK]&gt;</msg>
+<var>${resp}</var>
+<arg>${req}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.899545" elapsed="0.003025"/>
+</kw>
+<kw name="Status Code" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.902570" level="INFO">${code} = 200</msg>
+<var>${code}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.902570" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.903580" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.902570" elapsed="0.001010"/>
+</kw>
+<kw name="Json Body" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.903580" level="INFO">${body} = {'generation_id': '7e7c2af7932247ac905c3119dc972b7d', 'generated': {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email':...</msg>
+<var>${body}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.903580" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${body}[generated]</value>
+<status status="PASS" start="2026-06-22T11:33:57.903580" elapsed="0.000000"/>
+</return>
+<msg time="2026-06-22T11:33:57.903580" level="INFO">${gen} = {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email': 'user0@example.com', 'username': 'username', 'password': 'password...</msg>
+<var>${gen}</var>
+<doc>POST the bundled sample request and return the generated artifacts.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.898545" elapsed="0.005035"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.903580" level="INFO">${rf} = *** Settings ***
+Documentation     Auto-generated API test data for POST /api/v1/users.
+...               Generated by the AI Test Data Generator. Point ${BASE_URL}
+...               at your environme...</msg>
+<var>${rf}</var>
+<arg>${gen}[exports][robot_framework]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.903580" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${rf}</arg>
+<arg>*** Test Cases ***</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.903580" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${rf}</arg>
+<arg>POST On Session</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.903580" elapsed="0.001569"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${rf}</arg>
+<arg>Should Be Equal As Integers</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.905149" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-22T11:33:57.898545" elapsed="0.006604"/>
+</test>
+<test id="s1-s2-t5" name="Robot Export Carries Spec Headers For Gateway Auth" line="39">
+<kw name="Load Sample Request" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.905569" level="INFO">${req} = {'user_story': 'As a new user, I want to register an account with my email, a strong password, and my age so that I can access the platform. Users must be at least 18 years old.', 'api_spec': {'method...</msg>
+<var>${req}</var>
+<status status="PASS" start="2026-06-22T11:33:57.905569" elapsed="0.000000"/>
+</kw>
+<kw name="Set To Dictionary" owner="Collections">
+<arg>${req}[api_spec]</arg>
+<arg>headers</arg>
+<arg>${{ {"X-Demo-Key": "%{DEMO_KEY}"} }}</arg>
+<doc>Adds the given ``key_value_pairs`` and/or ``items`` to the ``dictionary``.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.905569" elapsed="0.000999"/>
+</kw>
+<kw name="Post Generate" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.910866" level="INFO">HTTP Request: POST http://testserver/api/generate "HTTP/1.1 200 OK"</msg>
+<msg time="2026-06-22T11:33:57.910866" level="INFO">${resp} = &lt;Response [200 OK]&gt;</msg>
+<var>${resp}</var>
+<arg>${req}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.906568" elapsed="0.004298"/>
+</kw>
+<kw name="Json Body" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.911866" level="INFO">${body} = {'generation_id': 'f277687cda184d47a8b85d090548ba99', 'generated': {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email':...</msg>
+<var>${body}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.911547" elapsed="0.000319"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.911866" level="INFO">${rf} = *** Settings ***
+Documentation     Auto-generated API test data for POST /api/v1/users.
+...               Generated by the AI Test Data Generator. Point ${BASE_URL}
+...               at your environme...</msg>
+<var>${rf}</var>
+<arg>${body}[generated][exports][robot_framework]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.911866" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${rf}</arg>
+<arg>Create Dictionary</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.911866" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${rf}</arg>
+<arg>X-Demo-Key=%{DEMO_KEY}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.912843" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${rf}</arg>
+<arg>headers=\${headers}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.912843" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-22T11:33:57.905149" elapsed="0.007694"/>
+</test>
+<test id="s1-s2-t6" name="Exports Include A Runnable Pytest Module" line="49">
+<kw name="Generate From Sample">
+<kw name="Load Sample Request" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.913893" level="INFO">${req} = {'user_story': 'As a new user, I want to register an account with my email, a strong password, and my age so that I can access the platform. Users must be at least 18 years old.', 'api_spec': {'method...</msg>
+<var>${req}</var>
+<status status="PASS" start="2026-06-22T11:33:57.913893" elapsed="0.000000"/>
+</kw>
+<kw name="Post Generate" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.916894" level="INFO">HTTP Request: POST http://testserver/api/generate "HTTP/1.1 200 OK"</msg>
+<msg time="2026-06-22T11:33:57.916894" level="INFO">${resp} = &lt;Response [200 OK]&gt;</msg>
+<var>${resp}</var>
+<arg>${req}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.913893" elapsed="0.003001"/>
+</kw>
+<kw name="Status Code" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.917925" level="INFO">${code} = 200</msg>
+<var>${code}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.916894" elapsed="0.001031"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.917925" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.917925" elapsed="0.000000"/>
+</kw>
+<kw name="Json Body" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.917925" level="INFO">${body} = {'generation_id': 'b448cfb3346447a7bea80e505d02908e', 'generated': {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email':...</msg>
+<var>${body}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.917925" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${body}[generated]</value>
+<status status="PASS" start="2026-06-22T11:33:57.917925" elapsed="0.000000"/>
+</return>
+<msg time="2026-06-22T11:33:57.918909" level="INFO">${gen} = {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email': 'user0@example.com', 'username': 'username', 'password': 'password...</msg>
+<var>${gen}</var>
+<doc>POST the bundled sample request and return the generated artifacts.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.912843" elapsed="0.006066"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.918909" level="INFO">${py} = """Auto-generated API tests by the AI Test Data Generator.
+
+Target: POST /api/v1/users
+Run:  pip install pytest requests  &amp;&amp;  pytest generated_api_test.py
+Set BASE_URL to point at your environment.
+""...</msg>
+<var>${py}</var>
+<arg>${gen}[exports][pytest]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.918909" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${py}</arg>
+<arg>import pytest</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.918909" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${py}</arg>
+<arg>@pytest.mark.parametrize</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.918909" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${py}</arg>
+<arg>def test_api(case):</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.918909" elapsed="0.000984"/>
+</kw>
+<status status="PASS" start="2026-06-22T11:33:57.912843" elapsed="0.007050"/>
+</test>
+<test id="s1-s2-t7" name="Exports Include A Runnable Playwright Spec" line="56">
+<kw name="Generate From Sample">
+<kw name="Load Sample Request" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.919893" level="INFO">${req} = {'user_story': 'As a new user, I want to register an account with my email, a strong password, and my age so that I can access the platform. Users must be at least 18 years old.', 'api_spec': {'method...</msg>
+<var>${req}</var>
+<status status="PASS" start="2026-06-22T11:33:57.919893" elapsed="0.000000"/>
+</kw>
+<kw name="Post Generate" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.923892" level="INFO">HTTP Request: POST http://testserver/api/generate "HTTP/1.1 200 OK"</msg>
+<msg time="2026-06-22T11:33:57.923892" level="INFO">${resp} = &lt;Response [200 OK]&gt;</msg>
+<var>${resp}</var>
+<arg>${req}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.919893" elapsed="0.003999"/>
+</kw>
+<kw name="Status Code" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.923892" level="INFO">${code} = 200</msg>
+<var>${code}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.923892" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.923892" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.923892" elapsed="0.000000"/>
+</kw>
+<kw name="Json Body" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.924915" level="INFO">${body} = {'generation_id': '8969ed38bd71405ba67a73a79bec1479', 'generated': {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email':...</msg>
+<var>${body}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.923892" elapsed="0.001023"/>
+</kw>
+<return>
+<value>${body}[generated]</value>
+<status status="PASS" start="2026-06-22T11:33:57.924915" elapsed="0.000000"/>
+</return>
+<msg time="2026-06-22T11:33:57.924915" level="INFO">${gen} = {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email': 'user0@example.com', 'username': 'username', 'password': 'password...</msg>
+<var>${gen}</var>
+<doc>POST the bundled sample request and return the generated artifacts.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.919893" elapsed="0.005022"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.924915" level="INFO">${pw} = import { test, expect } from '@playwright/test';
+
+// Auto-generated by the AI Test Data Generator.
+const BASE_URL = process.env.BASE_URL ?? 'http://localhost:8000';
+
+test.describe('POST /api/v1/users'...</msg>
+<var>${pw}</var>
+<arg>${gen}[exports][playwright]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.924915" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${pw}</arg>
+<arg>@playwright/test</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.924915" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${pw}</arg>
+<arg>request.post</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.924915" elapsed="0.000991"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${pw}</arg>
+<arg>expect(res.status()).toBe</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.925906" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-22T11:33:57.919893" elapsed="0.006013"/>
+</test>
+<test id="s1-s2-t8" name="Exports Include A Standalone Python Script" line="63">
+<kw name="Generate From Sample">
+<kw name="Load Sample Request" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.925906" level="INFO">${req} = {'user_story': 'As a new user, I want to register an account with my email, a strong password, and my age so that I can access the platform. Users must be at least 18 years old.', 'api_spec': {'method...</msg>
+<var>${req}</var>
+<status status="PASS" start="2026-06-22T11:33:57.925906" elapsed="0.000000"/>
+</kw>
+<kw name="Post Generate" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.930841" level="INFO">HTTP Request: POST http://testserver/api/generate "HTTP/1.1 200 OK"</msg>
+<msg time="2026-06-22T11:33:57.930841" level="INFO">${resp} = &lt;Response [200 OK]&gt;</msg>
+<var>${resp}</var>
+<arg>${req}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.926895" elapsed="0.003946"/>
+</kw>
+<kw name="Status Code" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.930841" level="INFO">${code} = 200</msg>
+<var>${code}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.930841" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.930841" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.930841" elapsed="0.000000"/>
+</kw>
+<kw name="Json Body" owner="GeneratorClient">
+<msg time="2026-06-22T11:33:57.931871" level="INFO">${body} = {'generation_id': 'b0a38a8d95e24350be8450d8d49e5297', 'generated': {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email':...</msg>
+<var>${body}</var>
+<arg>${resp}</arg>
+<status status="PASS" start="2026-06-22T11:33:57.930841" elapsed="0.001030"/>
+</kw>
+<return>
+<value>${body}[generated]</value>
+<status status="PASS" start="2026-06-22T11:33:57.931871" elapsed="0.000000"/>
+</return>
+<msg time="2026-06-22T11:33:57.931871" level="INFO">${gen} = {'positive': [{'name': 'positive_1', 'description': 'All fields valid and within constraints.', 'kind': 'positive', 'data': {'email': 'user0@example.com', 'username': 'username', 'password': 'password...</msg>
+<var>${gen}</var>
+<doc>POST the bundled sample request and return the generated artifacts.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.925906" elapsed="0.005965"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-06-22T11:33:57.931871" level="INFO">${script} = """Auto-generated API checks by the AI Test Data Generator.
+
+Target: POST /api/v1/users
+Run:  pip install requests  &amp;&amp;  python generated_api_checks.py
+Exits non-zero if any case fails. Set BASE_URL to...</msg>
+<var>${script}</var>
+<arg>${gen}[exports][python]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.931871" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${script}</arg>
+<arg>import requests</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.931871" elapsed="0.000971"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${script}</arg>
+<arg>def run() -&gt; int:</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.932842" elapsed="0.000000"/>
+</kw>
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${script}</arg>
+<arg>__main__</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2026-06-22T11:33:57.932842" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2026-06-22T11:33:57.925906" elapsed="0.006936"/>
+</test>
+<doc>Verifies the six generated artifact categories and the
+Robot Framework / Playwright export formats. Offline via the
+rule-based engine (TestClient, no live server, no API key).</doc>
+<status status="PASS" start="2026-06-22T11:33:57.870182" elapsed="0.062660"/>
+</suite>
+<status status="PASS" start="2026-06-22T11:33:57.490537" elapsed="0.443304"/>
+</suite>
+<statistics>
+<total>
+<stat pass="13" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Tests" id="s1" pass="13" fail="0" skip="0">Tests</stat>
+<stat name="Api Tests" id="s1-s1" pass="5" fail="0" skip="0">Tests.Api Tests</stat>
+<stat name="Generation Data" id="s1-s2" pass="8" fail="0" skip="0">Tests.Generation Data</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

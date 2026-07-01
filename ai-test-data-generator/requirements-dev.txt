@@ -1,0 +1,5 @@
+# Development & test dependencies (install on top of requirements.txt)
+-r requirements.txt
+robotframework>=6.1,<8.0
+robotframework-requests>=0.9   # RequestsLibrary — used by the generated .robot suites
+httpx>=0.27                    # required by Starlette's TestClient (Robot test library)

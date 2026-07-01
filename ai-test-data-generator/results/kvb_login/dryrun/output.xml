@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.2 (Python 3.11.9 on win32)" generated="2026-06-22T11:33:02.490692" rpa="false" schemaversion="5">
+<suite id="s1" name="Generated Api Tests" source="D:\captix-testcases\captix-robot\ai-test-data-generator\results\kvb_login\generated_api_tests.robot">
+<kw name="Create Session" owner="RequestsLibrary" type="SETUP">
+<arg>api</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.607266" elapsed="0.000000"/>
+</kw>
+<test id="s1-t1" name="positive_1" line="13">
+<kw name="Create Dictionary" owner="BuiltIn">
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<arg>CAPTIX-CLIENT-ID=%{KVB_CLIENT_ID}</arg>
+<arg>CAPTIX-API-KEY=%{KVB_API_KEY}</arg>
+<arg>app-code=%{KVB_APP_CODE}</arg>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.609271" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"username": "kvb_user01", "userpassword": "P@ssw0rd123", "login_type": "AD"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.609271" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/auth/adlogin</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.609271" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.609271" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 200 (positive).</doc>
+<tag>positive</tag>
+<status status="PASS" start="2026-06-22T11:33:02.607266" elapsed="0.002005"/>
+</test>
+<test id="s1-t2" name="positive_2" line="21">
+<kw name="Create Dictionary" owner="BuiltIn">
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<arg>CAPTIX-CLIENT-ID=%{KVB_CLIENT_ID}</arg>
+<arg>CAPTIX-API-KEY=%{KVB_API_KEY}</arg>
+<arg>app-code=%{KVB_APP_CODE}</arg>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.609271" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"username": "username", "userpassword": "userpass", "login_type": "AD"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.609271" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/auth/adlogin</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.609271" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.609271" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 200 (positive).</doc>
+<tag>positive</tag>
+<status status="PASS" start="2026-06-22T11:33:02.609271" elapsed="0.000000"/>
+</test>
+<test id="s1-t3" name="positive_3" line="29">
+<kw name="Create Dictionary" owner="BuiltIn">
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<arg>CAPTIX-CLIENT-ID=%{KVB_CLIENT_ID}</arg>
+<arg>CAPTIX-API-KEY=%{KVB_API_KEY}</arg>
+<arg>app-code=%{KVB_APP_CODE}</arg>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.609271" elapsed="0.002004"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"username": "username", "userpassword": "userpass", "login_type": "AD"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.611275" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/auth/adlogin</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.611275" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.611275" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 200 (positive).</doc>
+<tag>positive</tag>
+<status status="PASS" start="2026-06-22T11:33:02.609271" elapsed="0.002004"/>
+</test>
+<test id="s1-t4" name="negative_username_1" line="37">
+<kw name="Create Dictionary" owner="BuiltIn">
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<arg>CAPTIX-CLIENT-ID=%{KVB_CLIENT_ID}</arg>
+<arg>CAPTIX-API-KEY=%{KVB_API_KEY}</arg>
+<arg>app-code=%{KVB_APP_CODE}</arg>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.611275" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"userpassword": "P@ssw0rd123", "login_type": "AD"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.611275" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/auth/adlogin</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.611275" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.611275" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T11:33:02.611275" elapsed="0.000000"/>
+</test>
+<test id="s1-t5" name="negative_username_2" line="45">
+<kw name="Create Dictionary" owner="BuiltIn">
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<arg>CAPTIX-CLIENT-ID=%{KVB_CLIENT_ID}</arg>
+<arg>CAPTIX-API-KEY=%{KVB_API_KEY}</arg>
+<arg>app-code=%{KVB_APP_CODE}</arg>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.611275" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"username": "us", "userpassword": "P@ssw0rd123", "login_type": "AD"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.611275" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/auth/adlogin</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.611275" elapsed="0.002005"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.613280" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T11:33:02.611275" elapsed="0.002005"/>
+</test>
+<test id="s1-t6" name="negative_username_3" line="53">
+<kw name="Create Dictionary" owner="BuiltIn">
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<arg>CAPTIX-CLIENT-ID=%{KVB_CLIENT_ID}</arg>
+<arg>CAPTIX-API-KEY=%{KVB_API_KEY}</arg>
+<arg>app-code=%{KVB_APP_CODE}</arg>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.613280" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"username": "usernamexxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", "userpassword": "P@ssw0rd123", "login_type": "AD"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.613280" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/auth/adlogin</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.613280" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.613280" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T11:33:02.613280" elapsed="0.000000"/>
+</test>
+<test id="s1-t7" name="negative_username_4" line="61">
+<kw name="Create Dictionary" owner="BuiltIn">
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<arg>CAPTIX-CLIENT-ID=%{KVB_CLIENT_ID}</arg>
+<arg>CAPTIX-API-KEY=%{KVB_API_KEY}</arg>
+<arg>app-code=%{KVB_APP_CODE}</arg>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.613280" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"username": 1234567, "userpassword": "P@ssw0rd123", "login_type": "AD"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.613280" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/auth/adlogin</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.613280" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.613280" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T11:33:02.613280" elapsed="0.000000"/>
+</test>
+<test id="s1-t8" name="negative_userpassword_5" line="69">
+<kw name="Create Dictionary" owner="BuiltIn">
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<arg>CAPTIX-CLIENT-ID=%{KVB_CLIENT_ID}</arg>
+<arg>CAPTIX-API-KEY=%{KVB_API_KEY}</arg>
+<arg>app-code=%{KVB_APP_CODE}</arg>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.615284" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"username": "kvb_user01", "login_type": "AD"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.615284" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/auth/adlogin</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.615284" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.615284" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T11:33:02.613280" elapsed="0.002004"/>
+</test>
+<test id="s1-t9" name="negative_userpassword_6" line="77">
+<kw name="Create Dictionary" owner="BuiltIn">
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<arg>CAPTIX-CLIENT-ID=%{KVB_CLIENT_ID}</arg>
+<arg>CAPTIX-API-KEY=%{KVB_API_KEY}</arg>
+<arg>app-code=%{KVB_APP_CODE}</arg>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.615284" elapsed="0.001265"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"username": "kvb_user01", "userpassword": "userpas", "login_type": "AD"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.616549" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/auth/adlogin</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.616549" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.616549" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T11:33:02.615284" elapsed="0.001265"/>
+</test>
+<test id="s1-t10" name="negative_userpassword_7" line="85">
+<kw name="Create Dictionary" owner="BuiltIn">
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<arg>CAPTIX-CLIENT-ID=%{KVB_CLIENT_ID}</arg>
+<arg>CAPTIX-API-KEY=%{KVB_API_KEY}</arg>
+<arg>app-code=%{KVB_APP_CODE}</arg>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.616549" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"username": "kvb_user01", "userpassword": "userpasswordxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", "login_type": "AD"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.617553" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/auth/adlogin</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.617553" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.617553" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T11:33:02.616549" elapsed="0.001004"/>
+</test>
+<test id="s1-t11" name="negative_userpassword_8" line="93">
+<kw name="Create Dictionary" owner="BuiltIn">
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<arg>CAPTIX-CLIENT-ID=%{KVB_CLIENT_ID}</arg>
+<arg>CAPTIX-API-KEY=%{KVB_API_KEY}</arg>
+<arg>app-code=%{KVB_APP_CODE}</arg>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.617553" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"username": "kvb_user01", "userpassword": 1234567, "login_type": "AD"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.617553" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/auth/adlogin</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.618554" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.618554" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T11:33:02.617553" elapsed="0.001001"/>
+</test>
+<test id="s1-t12" name="negative_login_type_9" line="101">
+<kw name="Create Dictionary" owner="BuiltIn">
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<arg>CAPTIX-CLIENT-ID=%{KVB_CLIENT_ID}</arg>
+<arg>CAPTIX-API-KEY=%{KVB_API_KEY}</arg>
+<arg>app-code=%{KVB_APP_CODE}</arg>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.618554" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"username": "kvb_user01", "userpassword": "P@ssw0rd123"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.618554" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/auth/adlogin</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.618554" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.618554" elapsed="0.000999"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T11:33:02.618554" elapsed="0.000999"/>
+</test>
+<test id="s1-t13" name="negative_login_type_10" line="109">
+<kw name="Create Dictionary" owner="BuiltIn">
+<var>${headers}</var>
+<arg>Content-Type=application/json</arg>
+<arg>CAPTIX-CLIENT-ID=%{KVB_CLIENT_ID}</arg>
+<arg>CAPTIX-API-KEY=%{KVB_API_KEY}</arg>
+<arg>app-code=%{KVB_APP_CODE}</arg>
+<arg>Accept=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.619553" elapsed="0.000000"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<var>${body}</var>
+<arg>json.loads(r'''{"username": "kvb_user01", "userpassword": "P@ssw0rd123", "login_type": "__not_a_valid_option__"}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.619553" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<var>${resp}</var>
+<arg>api</arg>
+<arg>/api/v1/auth/adlogin</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.619553" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Integers" owner="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to integers.</doc>
+<status status="NOT RUN" start="2026-06-22T11:33:02.619553" elapsed="0.000000"/>
+</kw>
+<doc>Expect HTTP 400 (negative).</doc>
+<tag>negative</tag>
+<status status="PASS" start="2026-06-22T11:33:02.619553" elapsed="0.000000"/>
+</test>
+<doc>Auto-generated API test data for POST /api/v1/auth/adlogin.
+Generated by the AI Test Data Generator. Point http://localhost:8000
+at your environment, then run:  robot generated_api_tests.robot</doc>
+<status status="PASS" start="2026-06-22T11:33:02.492134" elapsed="0.128419"/>
+</suite>
+<statistics>
+<total>
+<stat pass="13" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="10" fail="0" skip="0">negative</stat>
+<stat pass="3" fail="0" skip="0">positive</stat>
+</tag>
+<suite>
+<stat name="Generated Api Tests" id="s1" pass="13" fail="0" skip="0">Generated Api Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
