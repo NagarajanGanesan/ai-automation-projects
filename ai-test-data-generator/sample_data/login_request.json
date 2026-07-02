@@ -1,0 +1,27 @@
+{
+  "user_story": "As a KVB partner-product user, I want to authenticate via the AD login endpoint with my username and password so that I receive session cookies and my branch/role context. login_type must always be 'AD'.",
+  "api_spec": {
+    "method": "POST",
+    "path": "/api/v1/auth/adlogin",
+    "description": "KVB AD login. Returns auth cookies on success; 400 on invalid credentials or malformed input.",
+    "success_status": 200,
+    "error_status": 400,
+    "headers": {
+      "Content-Type": "application/json",
+      "CAPTIX-CLIENT-ID": "%{KVB_CLIENT_ID}",
+      "CAPTIX-API-KEY": "%{KVB_API_KEY}",
+      "app-code": "%{KVB_APP_CODE}"
+    },
+    "fields": [
+      { "name": "username", "type": "string", "required": true, "min_length": 3, "max_length": 50, "example": "kvb_user01" },
+      { "name": "userpassword", "type": "string", "required": true, "min_length": 8, "max_length": 64, "example": "P@ssw0rd123" },
+      { "name": "login_type", "type": "enum", "required": true, "enum": ["AD"], "example": "AD" }
+    ]
+  },
+  "validation_rules": [
+    { "rule": "login_type must be exactly 'AD'; any other value is rejected at the gateway.", "fields": ["login_type"] },
+    { "rule": "username and userpassword are both mandatory; missing either returns 400.", "fields": ["username", "userpassword"] }
+  ],
+  "table_name": "app_user",
+  "count": 3
+}

@@ -1,0 +1,23 @@
+{
+  "user_story": "As a new user, I want to register an account with my email, a strong password, and my age so that I can access the platform. Users must be at least 18 years old.",
+  "api_spec": {
+    "method": "POST",
+    "path": "/api/v1/users",
+    "description": "Register a new user account.",
+    "success_status": 201,
+    "error_status": 400,
+    "fields": [
+      { "name": "email", "type": "email", "required": true },
+      { "name": "username", "type": "string", "required": true, "min_length": 3, "max_length": 20 },
+      { "name": "password", "type": "string", "required": true, "min_length": 8, "max_length": 64 },
+      { "name": "age", "type": "integer", "required": true, "minimum": 18, "maximum": 120 },
+      { "name": "role", "type": "enum", "required": false, "enum": ["user", "admin", "editor"] }
+    ]
+  },
+  "validation_rules": [
+    { "rule": "Password must contain at least one digit and one letter.", "fields": ["password"] },
+    { "rule": "Email must be unique across existing accounts.", "fields": ["email"] }
+  ],
+  "table_name": "users",
+  "count": 3
+}
