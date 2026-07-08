@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.9)" generated="20240115 09:30:00.000" rpa="false">
+  <suite id="s1" name="E-Commerce Regression">
+    <suite id="s1-s1" name="Login">
+      <test id="s1-s1-t1" name="Valid user can log in">
+        <kw name="Open Browser" library="SeleniumLibrary">
+          <status status="PASS" starttime="20240115 09:30:01.000" endtime="20240115 09:30:03.200"/>
+        </kw>
+        <kw name="Login With Credentials" library="LoginKeywords">
+          <kw name="Input Text" library="SeleniumLibrary">
+            <status status="PASS" starttime="20240115 09:30:03.200" endtime="20240115 09:30:03.500"/>
+          </kw>
+          <status status="PASS" starttime="20240115 09:30:03.200" endtime="20240115 09:30:04.000"/>
+        </kw>
+        <status status="PASS" starttime="20240115 09:30:01.000" endtime="20240115 09:30:04.100"/>
+        <tags>
+          <tag>smoke</tag>
+          <tag>login</tag>
+        </tags>
+      </test>
+      <test id="s1-s1-t2" name="Invalid password is rejected">
+        <kw name="Login With Credentials" library="LoginKeywords">
+          <kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+            <msg timestamp="20240115 09:30:09.900" level="FAIL">Element 'id=error-banner' not visible after 5 seconds.</msg>
+            <status status="FAIL" starttime="20240115 09:30:05.000" endtime="20240115 09:30:09.900"/>
+          </kw>
+          <status status="FAIL" starttime="20240115 09:30:05.000" endtime="20240115 09:30:09.900"/>
+        </kw>
+        <status status="FAIL" starttime="20240115 09:30:05.000" endtime="20240115 09:30:09.950">Element 'id=error-banner' not visible after 5 seconds.</status>
+        <tags>
+          <tag>login</tag>
+          <tag>negative</tag>
+        </tags>
+      </test>
+    </suite>
+    <suite id="s1-s2" name="Checkout">
+      <test id="s1-s2-t1" name="Add item to cart">
+        <kw name="Click Element" library="SeleniumLibrary">
+          <status status="PASS" starttime="20240115 09:30:10.000" endtime="20240115 09:30:10.800"/>
+        </kw>
+        <status status="PASS" starttime="20240115 09:30:10.000" endtime="20240115 09:30:10.900"/>
+        <tags>
+          <tag>cart</tag>
+        </tags>
+      </test>
+      <test id="s1-s2-t2" name="Complete purchase with credit card">
+        <kw name="Submit Payment" library="PaymentKeywords">
+          <kw name="Post Request" library="RequestsLibrary">
+            <msg timestamp="20240115 09:30:25.100" level="FAIL">ConnectionError: HTTPSConnectionPool(host='pay.example.com', port=443): Read timed out. (read timeout=10)</msg>
+            <status status="FAIL" starttime="20240115 09:30:15.000" endtime="20240115 09:30:25.100"/>
+          </kw>
+          <status status="FAIL" starttime="20240115 09:30:15.000" endtime="20240115 09:30:25.100"/>
+        </kw>
+        <status status="FAIL" starttime="20240115 09:30:15.000" endtime="20240115 09:30:25.200">ConnectionError: payment gateway read timed out.</status>
+        <tags>
+          <tag>checkout</tag>
+          <tag>payment</tag>
+          <tag>critical</tag>
+        </tags>
+      </test>
+      <test id="s1-s2-t3" name="Apply discount code">
+        <kw name="Verify Discount Applied" library="CheckoutKeywords">
+          <msg timestamp="20240115 09:30:26.000" level="FAIL">AssertionError: Expected total '90.00' but was '100.00'.</msg>
+          <status status="FAIL" starttime="20240115 09:30:25.500" endtime="20240115 09:30:26.000"/>
+        </kw>
+        <status status="FAIL" starttime="20240115 09:30:25.500" endtime="20240115 09:30:26.050">AssertionError: Expected total '90.00' but was '100.00'.</status>
+        <tags>
+          <tag>checkout</tag>
+          <tag>discount</tag>
+        </tags>
+      </test>
+      <test id="s1-s2-t4" name="Gift wrapping option">
+        <status status="SKIP" starttime="20240115 09:30:26.100" endtime="20240115 09:30:26.100">Feature flag 'gift_wrap' disabled in this environment.</status>
+        <tags>
+          <tag>checkout</tag>
+        </tags>
+      </test>
+    </suite>
+    <status status="FAIL" starttime="20240115 09:30:01.000" endtime="20240115 09:30:26.200"/>
+  </suite>
+  <statistics>
+    <total>
+      <stat pass="2" fail="3" skip="1">All Tests</stat>
+    </total>
+    <tag>
+      <stat pass="1" fail="1" skip="0">login</stat>
+      <stat pass="0" fail="2" skip="1">checkout</stat>
+    </tag>
+    <suite>
+      <stat pass="2" fail="3" skip="1" id="s1" name="E-Commerce Regression">E-Commerce Regression</stat>
+      <stat pass="1" fail="1" skip="0" id="s1-s1" name="Login">E-Commerce Regression.Login</stat>
+      <stat pass="1" fail="2" skip="1" id="s1-s2" name="Checkout">E-Commerce Regression.Checkout</stat>
+    </suite>
+  </statistics>
+  <errors></errors>
+</robot>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Robot Framework Failure Analyzer</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>🤖 AI Robot Framework Failure Analyzer</h1>
+      <p class="subtitle">
+        Upload an <code>output.xml</code> to get statistics and AI-powered
+        failure insights.
+      </p>
+    </header>
+
+    <main class="container">
+      <section class="card upload-card">
+        <h2>1. Upload results</h2>
+        <form id="upload-form">
+          <label class="file-drop" for="file-input">
+            <span id="file-label">Choose output.xml (or drag &amp; drop)</span>
+            <input id="file-input" type="file" accept=".xml,.html" />
+          </label>
+          <button type="submit" id="upload-btn" class="btn primary">
+            Upload &amp; Parse
+          </button>
+        </form>
+        <p id="upload-status" class="status" role="status"></p>
+      </section>
+
+      <section id="results" class="hidden">
+        <section class="card">
+          <h2>2. Run summary</h2>
+          <div id="stats-grid" class="stats-grid"></div>
+          <div class="bar-wrap">
+            <div id="pass-bar" class="bar pass"></div>
+            <div id="fail-bar" class="bar fail"></div>
+            <div id="skip-bar" class="bar skip"></div>
+          </div>
+          <table class="data-table" id="failed-table">
+            <thead>
+              <tr>
+                <th>Suite</th>
+                <th>Test</th>
+                <th>Failing keyword</th>
+                <th>Message</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <h2>3. AI analysis</h2>
+            <button id="analyze-btn" class="btn primary">Analyze with AI</button>
+          </div>
+          <p id="analyze-status" class="status" role="status"></p>
+
+          <div id="analysis" class="hidden">
+            <div class="summary-banner">
+              <span id="risk-badge" class="badge">—</span>
+              <p id="exec-summary"></p>
+            </div>
+
+            <h3>Root causes</h3>
+            <ul id="root-causes" class="insight-list"></ul>
+
+            <h3>Flaky patterns</h3>
+            <ul id="flaky-patterns" class="insight-list"></ul>
+
+            <h3>Risk areas</h3>
+            <ul id="risk-areas" class="insight-list"></ul>
+
+            <h3>Recommendations</h3>
+            <ul id="recommendations" class="insight-list"></ul>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span id="ai-status">checking AI status…</span>
+    </footer>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
