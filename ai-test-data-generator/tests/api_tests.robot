@@ -45,7 +45,7 @@ Generate Then Fetch Result By Id
 Generate Rejects Empty Fields
     ${req}=    Load Sample Request
     ${bad}=    With Empty Fields    ${req}
-    ${resp}=    Post Generate    ${bad}
+    ${resp}=    Post Generator	${bad}
     ${code}=    Status Code    ${resp}
     Should Be Equal As Integers    ${code}    400
     ${body}=    Json Body    ${resp}
