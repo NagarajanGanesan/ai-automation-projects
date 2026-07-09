@@ -50,3 +50,10 @@ Generate Rejects Empty Fields
     Should Be Equal As Integers    ${code}    400
     ${body}=    Json Body    ${resp}
     Should Be Equal    ${body}[error][code]    validation_error
+
+Result Unknown Id Returns 404
+    ${resp}=    Get Result    does-not-exist
+    ${code}=    Status Code    ${resp}
+    Should Be Equal As Integers    ${code}    404
+    ${body}=    Json Body    ${resp}
+    Should Be Equal    ${body}[error][code]    result_not_found
